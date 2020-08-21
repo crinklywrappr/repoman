@@ -11,7 +11,7 @@
   (:import [java.io File])
   (:gen-class))
 
-;; (set! *warn-on-reflection* true)
+(set! *warn-on-reflection* true)
 
 (def endpoint "https://repology.org/api/v1/")
 (def pkg-keys [:repo :subrepo :name :version :status])
@@ -76,8 +76,9 @@
        (fn [[k v]]
          (let [v (transform-keys ->kebab-case-keyword v)]
            {:prj k
+            :prj-len (count k)
             :repos (count v)
-            :avail? (count (filter (partial in-repos? repos) v))})))))
+            :matches (count (filter (partial in-repos? repos) v))})))))
 
 (defn project
   "Gets project information from repology
@@ -105,10 +106,19 @@
   [repos {:keys [search json]}]
   (let [xs (repoman.core/search repos search)]
     (if json
-      (println (json/generate-string xs {:pretty true}))
-      (doseq [m xs]
-        (println (format "\"%s\" is in %d/%d repositories"
-                         (:prj m) (:avail? m) (:repos m)))))))
+      (println
+       (json/generate-string
+        (map #(dissoc % :prj-len) xs)
+        {:pretty true}))
+      (let [max-len (apply max (map :prj-len xs))]
+        (doseq [{:keys [prj prj-len repos matches]} xs]
+          (println
+           (format
+            "%s...%s%3s/%s repos"
+            prj
+            (apply str (repeat (- max-len prj-len) \.))
+            matches
+            repos)))))))
 
 (defn format-project
   "Prints project data to the screen.

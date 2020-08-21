@@ -10,8 +10,8 @@ Download the application from the releases page.
 
 ```
 $ rp -s starship --with-repo chocolatey --with-repo scoop
-"rust:starship-module-config-derive" is in 0/4 repositories
-"starship" is in 3/20 repositories
+rust:starship-module-config-derive...  0/4 repos
+starship.............................  3/20 repos
 
 $ rp -p starship --with-repo chocolatey --with-repo scoop
 |      :repo | :subrepo |             :name | :version |  :status |
@@ -52,7 +52,7 @@ I wrote this in an afternoon.  I had a vm with 4 non-language-specific package m
 
 After writing it, I realized it's small enough (< 150 loc) to be an excellent project for playing around with lumo, babashka, graal native image, etc.
 
-This has already been accomplished with graal native image.  However, the image size is huge.  I believe this is due to limitations with clj-http-lite.
+This has already been accomplished with graal native image.
 
 ## License
 
