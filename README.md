@@ -54,6 +54,10 @@ After writing it, I realized it's small enough (< 150 loc) to be an excellent pr
 
 This has already been accomplished with graal native image.
 
+## Future plans
+
+It may be useful to invert the information model, and have repoman determine what package managers are on the system automatically.  Configuration would then be to hide repos instead of adding them.
+
 ## License
 
 Copyright © 2020 FIXME
