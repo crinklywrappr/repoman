@@ -19,8 +19,8 @@
           "--report-unsupported-elements-at-runtime"
           "--initialize-at-build-time"
           "--allow-incomplete-classpath" ;; clj-http-lite requires this
-          "--no-fallback"
-          "-H:EnableURLProtocols=https"]}
+          "--enable-https"
+          "--no-fallback"]}
   :profiles
   {:uberjar
    {:aot :all
