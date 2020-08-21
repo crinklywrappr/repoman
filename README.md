@@ -25,10 +25,10 @@ $ rp -p starship --with-repo chocolatey --with-repo scoop
 Create a config file at `$(... --config)`.  Here is an example file.
 
 ```clojure
-[arch
- gnuguix
- nix_stable
- linuxbrew]
+["arch"
+ "gnuguix"
+ "nix_stable"
+ "linuxbrew"]
 ```
 
 ## Options
