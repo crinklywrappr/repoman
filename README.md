@@ -22,7 +22,7 @@ $ rp -p starship --with-repo chocolatey --with-repo scoop
 
 ```
 
-Create a config file at `$(... --config)`.  Here is an example file.
+Create a config file at `rp --config`.  Here is an example file.
 
 ```clojure
 ["arch"
