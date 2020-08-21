@@ -4,18 +4,16 @@ Tiny tool to query repology.org.
 
 ## Installation
 
-Download the uberjar.  In the future I want to publish this as an executable.
+Download the application from the releases page.
 
 ## Usage
 
-Currently needs java.
-
 ```
-$ java -jar repoman-0.1.0-standalone.jar -s starship --with-repo chocolatey --with-repo scoop
+$ rp -s starship --with-repo chocolatey --with-repo scoop
 "rust:starship-module-config-derive" is in 0/4 repositories
 "starship" is in 3/20 repositories
 
-$ java -jar repoman-0.1.0-standalone.jar -p starship --with-repo chocolatey --with-repo scoop
+$ rp -p starship --with-repo chocolatey --with-repo scoop
 |      :repo | :subrepo |             :name | :version |  :status |
 |------------+----------+-------------------+----------+----------|
 | chocolatey |          |          starship |   0.44.0 |   newest |
@@ -52,7 +50,9 @@ rp: A tiny tool for querying repology
 
 I wrote this in an afternoon.  I had a vm with 4 non-language-specific package managers and wanted an easier way to query what was available, where.
 
-After writing it, I realized it's small enough (< 150 loc) to be an excellent project for playing around with lumo, babashka, graal native image, etc.  I plan to do that at some point.
+After writing it, I realized it's small enough (< 150 loc) to be an excellent project for playing around with lumo, babashka, graal native image, etc.
+
+This has already been accomplished with graal native image.  However, the image size is huge.  I believe this is due to limitations with clj-http-lite.
 
 ## License
 

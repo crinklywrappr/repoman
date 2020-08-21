@@ -1,6 +1,6 @@
 (ns repoman.core
   (:require [clojure.pprint :refer [print-table]]
-            [clj-http.client :as client]
+            [clj-http.lite.client :as client]
             [cheshire.core :as json]
             [camel-snake-kebab.core :refer [->kebab-case-keyword]]
             [camel-snake-kebab.extras :refer [transform-keys]]
@@ -10,6 +10,8 @@
             [clojure.edn :as edn])
   (:import [java.io File])
   (:gen-class))
+
+;; (set! *warn-on-reflection* true)
 
 (def endpoint "https://repology.org/api/v1/")
 (def pkg-keys [:repo :subrepo :name :version :status])
@@ -40,7 +42,7 @@
 (defn get-repos
   "Returns a vector showing the repositories we are interested in"
   [repo-file {:keys [with-repo]}]
-  (if (.exists repo-file)
+  (if (.exists ^File repo-file)
     (try
       (concat
        (edn/read-string
@@ -141,7 +143,7 @@
         cfg (config)]
     (cond
       (:help opts) (format-help (:summary m))
-      (:config opts) (println (.getAbsolutePath cfg))
+      (:config opts) (println (.getAbsolutePath ^File cfg))
       :else
       (let [repos (get-repos cfg opts)]
         (cond
